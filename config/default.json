@@ -1,3 +1,4 @@
 {
-	"mongoURI": "mongodb+srv://isabel:isabel4321@cluster0.lepk6.mongodb.net/miniReddit?retryWrites=true&w=majority"
+	"mongoURI": "mongodb+srv://isabel:isabel4321@cluster0.lepk6.mongodb.net/miniReddit?retryWrites=true&w=majority",
+	"jwtSecret": "redditisabel4"
 }
