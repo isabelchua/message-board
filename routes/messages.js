@@ -1,18 +1,53 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
+const { validationResult, check } = require("express-validator");
+
+const User = require("../models/User");
+const Message = require("../models/Message");
 
 //@route		GET api/contacts
 //@desc		Get all users contacts
 //@access	Private
-router.get("/", (req, res) => {
-	res.send("Get all messages");
+router.get("/", auth, async (req, res) => {
+	try {
+		const messages = await Message.find({ user: req.user.id }).sort({
+			date: -1
+		});
+		res.json(messages);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server Error");
+	}
 });
 
 //@route		POST api/contacts
 //@desc		add new contact
 //@access	Private
-router.post("/", (req, res) => {
-	res.send("Add message");
+router.post("/", 
+	
+	[auth, [check("message", "Message is required").not().isEmpty()]],
+	async (req, res) => {
+		//res.send("Add message");
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		const { message, date } = req.body;
+
+		try {
+			const newMessage = new Message({
+				message, date
+				user: req.user.id
+			});
+			const message = await newMessage.save();
+			res.json(message);
+		} catch (err) {
+			console.error(err.message);
+			res, status(500).send("Server Error");
+		}
+
 });
 
 //@route		PUT api/contacts/:id
