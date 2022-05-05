@@ -6,7 +6,7 @@ const MessageSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "users"
 	},
-	message: {
+	post: {
 		type: String,
 		required: true
 	},
@@ -17,4 +17,4 @@ const MessageSchema = mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model("message", ContactSchema);
+module.exports = mongoose.model("message", MessageSchema);

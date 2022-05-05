@@ -21,12 +21,12 @@ router.get("/", auth, async (req, res) => {
 	}
 });
 
-//@route		POST api/contacts
-//@desc		add new contact
+//@route		POST api/message
+//@desc		add new message
 //@access	Private
-router.post("/", 
-	
-	[auth, [check("message", "Message is required").not().isEmpty()]],
+router.post(
+	"/",
+	[auth, [check("post", "Message is required").not().isEmpty()]],
 	async (req, res) => {
 		//res.send("Add message");
 		const errors = validationResult(req);
@@ -34,21 +34,22 @@ router.post("/",
 			return res.status(400).json({ errors: errors.array() });
 		}
 
-		const { message, date } = req.body;
+		const { post, date } = req.body;
 
 		try {
 			const newMessage = new Message({
-				message, date
+				post,
+				date,
 				user: req.user.id
 			});
 			const message = await newMessage.save();
 			res.json(message);
 		} catch (err) {
 			console.error(err.message);
-			res, status(500).send("Server Error");
+			res.status(500).send("Server Error");
 		}
-
-});
+	}
+);
 
 //@route		PUT api/contacts/:id
 //@desc		Update contact
