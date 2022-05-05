@@ -54,8 +54,33 @@ router.post(
 //@route		PUT api/contacts/:id
 //@desc		Update contact
 //@access	Private
-router.put("/:id", (req, res) => {
-	res.send("Update contact");
+router.put("/:id", auth, async (req, res) => {
+	//res.send("Update contact");
+	const { post } = req.body;
+
+	// build message object
+	const postFields = {};
+	if (post) postFields.post = post;
+
+	try {
+		let post = await Message.findById(req.params.id);
+
+		if (!post) return res.status(404).json({ msg: "Message not found!" });
+
+		//see if user owns message
+		if (post.user.toString() !== req.user.id) {
+			return res.status(401).json({ msg: "Not authorized" });
+		}
+		post = await Message.findByIdAndUpdate(
+			req.params.id,
+			{ $set: postFields },
+			{ new: true }
+		);
+		res.json(post);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server Error");
+	}
 });
 
 //@route		DELETE api/contacts/:id
