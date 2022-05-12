@@ -2,15 +2,17 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
 	return (
 		<Router>
 			<>
+				<Navbar />
 				<header className="App-header">test</header>
 				<Routes>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/about" component={About} />
+					<Route path="/" element={<Home />} />
+					<Route path="/about" element={<About />} />
 				</Routes>
 			</>
 		</Router>
