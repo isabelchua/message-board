@@ -2,6 +2,8 @@ import React, { useReducer } from "react";
 import uuid from "uuid";
 import PostContext from "./postContext";
 import postReducer from "./postReducer";
+//import { createContext } from "react";
+
 import {
 	ADD_POST,
 	DELETE_POST,
@@ -15,22 +17,37 @@ const PostState = props => {
 	const initialState = {
 		posts: [
 			{
-				id: 1,
-				name: "Jill Johnson",
-				email: "jill@gmail.com",
-				post: "111-111-1111"
+				id: "1",
+				name: "Cake",
+				shop: "5",
+				image: "https://i.imgur.com/w6igL9E.jpg",
+				review:
+					"Excellent! Staff are very friendly! Definitely will come back! Very family style! Original presentation! The pakbet was served in a hallowed squash! Nice!!",
+				rating: 4,
+				userid: "1",
+				shopid: "5f5ada9ee9e6931cbcea8500",
+				date: ""
 			},
 			{
-				id: 2,
-				name: "Sara Watson",
-				email: "sara@gmail.com",
-				post: "222-222-2222"
+				id: "2",
+				name: "California Maki",
+				shop: "3",
+				image: "",
+				review: "Soooo good!",
+				rating: 5,
+				userid: "2",
+				date: "Septemper 2 2020",
+				shopid: "5f5ada9ee9e6931cbcea8500"
 			},
 			{
-				id: 3,
-				name: "Harry White",
-				email: "harry@gmail.com",
-				post: "333-333-3333"
+				id: "3",
+				name: "Bulalo",
+				shop: "1",
+				image: "",
+				review: "Soooo good!",
+				rating: 3,
+				userid: "3",
+				shopid: "5f5ada9ee9e6931cbcea8500"
 			}
 		]
 	};
@@ -50,6 +67,7 @@ const PostState = props => {
 	//Filt;er POSTs
 
 	//clear Filter
+	//const postContext = createContext();
 
 	return (
 		<PostContext.Provider value={{ posts: state.posts }}>
