@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
 	return (
 		<div>
-			<h1>Message Board</h1>
+			<h1>Pixiu</h1>
 			<ul>
 				<li>
 					<Link to="/">Home</Link>

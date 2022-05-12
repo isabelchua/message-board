@@ -27,7 +27,7 @@ const PostForm = () => {
 			<textarea
 				name="content"
 				placeholder="type your message.."
-				value="content"
+				value={content}
 				onChange={onChange}
 				id=""
 				cols="30"

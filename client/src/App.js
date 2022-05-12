@@ -11,7 +11,6 @@ function App() {
 			<Router>
 				<>
 					<Navbar />
-					<header className="App-header">test</header>
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/about" element={<About />} />

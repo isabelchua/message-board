@@ -1,11 +1,11 @@
 import React from "react";
 
-const PostItem = ({ message }) => {
-	const { id, name, post } = message;
+const PostItem = ({ post }) => {
+	const { id, name, content } = post;
 	return (
 		<div>
 			<p>{name}</p>
-			<p>{post}</p>
+			<p>{content}</p>
 
 			<button>edit</button>
 			<button>delete</button>

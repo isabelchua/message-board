@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
-import uuid from "uuid";
+import { v4 as uuidv4 } from "uuid";
+
 import PostContext from "./postContext";
 import postReducer from "./postReducer";
 //import { createContext } from "react";
@@ -21,8 +22,7 @@ const PostState = props => {
 				name: "Cake",
 				shop: "5",
 				image: "https://i.imgur.com/w6igL9E.jpg",
-				content:
-					"Excellent! Staff are very friendly! Definitely will come back! Very family style! Original presentation! The pakbet was served in a hallowed squash! Nice!!",
+				content: "test content",
 				rating: 4,
 				userid: "1",
 				shopid: "5f5ada9ee9e6931cbcea8500",
@@ -33,7 +33,7 @@ const PostState = props => {
 				name: "California Maki",
 				shop: "3",
 				image: "",
-				content: "Soooo good!",
+				content: "hello",
 				rating: 5,
 				userid: "2",
 				date: "Septemper 2 2020",
@@ -44,7 +44,8 @@ const PostState = props => {
 				name: "Bulalo",
 				shop: "1",
 				image: "",
-				content: "Soooo good!",
+				content:
+					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 				rating: 3,
 				userid: "3",
 				shopid: "5f5ada9ee9e6931cbcea8500"
@@ -55,6 +56,10 @@ const PostState = props => {
 	const [state, dispatch] = useReducer(postReducer, initialState);
 
 	// Add POST
+	const addPost = post => {
+		post.id = uuidv4();
+		dispatch({ type: ADD_POST, payload: post });
+	};
 
 	//Delete POST
 
@@ -70,7 +75,7 @@ const PostState = props => {
 	//const postContext = createContext();
 
 	return (
-		<PostContext.Provider value={{ posts: state.posts }}>
+		<PostContext.Provider value={{ posts: state.posts, addPost }}>
 			{props.children}
 		</PostContext.Provider>
 	);

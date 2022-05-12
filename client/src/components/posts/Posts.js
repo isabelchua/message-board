@@ -10,8 +10,8 @@ const Posts = () => {
 	//console.log(posts);
 	return (
 		<>
-			{posts.map(message => (
-				<PostItem key={message.id} message={message} />
+			{posts.map(post => (
+				<PostItem key={post.id} post={post} />
 			))}
 		</>
 	);
