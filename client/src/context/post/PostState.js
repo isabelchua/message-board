@@ -62,7 +62,9 @@ const PostState = props => {
 	};
 
 	//Delete POST
-
+	const deletePost = id => {
+		dispatch({ type: DELETE_POST, payload: id });
+	};
 	// Set Current POST
 
 	// Clear Current POST
@@ -75,7 +77,7 @@ const PostState = props => {
 	//const postContext = createContext();
 
 	return (
-		<PostContext.Provider value={{ posts: state.posts, addPost }}>
+		<PostContext.Provider value={{ posts: state.posts, addPost, deletePost }}>
 			{props.children}
 		</PostContext.Provider>
 	);
