@@ -8,6 +8,7 @@ import postReducer from "./postReducer";
 import {
 	ADD_POST,
 	DELETE_POST,
+	SET_CURRENT,
 	CLEAR_CURRENT,
 	UPDATE_POST,
 	FILTER_POSTS,
@@ -50,7 +51,8 @@ const PostState = props => {
 				userid: "3",
 				shopid: "5f5ada9ee9e6931cbcea8500"
 			}
-		]
+		],
+		current: null
 	};
 
 	const [state, dispatch] = useReducer(postReducer, initialState);
@@ -66,8 +68,14 @@ const PostState = props => {
 		dispatch({ type: DELETE_POST, payload: id });
 	};
 	// Set Current POST
+	const setCurrent = post => {
+		dispatch({ type: SET_CURRENT, payload: post });
+	};
 
 	// Clear Current POST
+	const clearCurrent = () => {
+		dispatch({ type: CLEAR_CURRENT });
+	};
 
 	// Update POST
 
@@ -77,7 +85,16 @@ const PostState = props => {
 	//const postContext = createContext();
 
 	return (
-		<PostContext.Provider value={{ posts: state.posts, addPost, deletePost }}>
+		<PostContext.Provider
+			value={{
+				posts: state.posts,
+				current: state.current,
+				addPost,
+				deletePost,
+				setCurrent,
+				clearCurrent
+			}}
+		>
 			{props.children}
 		</PostContext.Provider>
 	);

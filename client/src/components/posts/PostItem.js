@@ -4,12 +4,13 @@ import PostContext from "./../../context/post/postContext";
 const PostItem = ({ post }) => {
 	const postContext = useContext(PostContext);
 
-	const { deletePost } = postContext;
+	const { deletePost, setCurrent, clearCurrent } = postContext;
 
 	const { id, name, content } = post;
 
 	const onDelete = () => {
 		deletePost(id);
+		clearCurrent();
 	};
 
 	return (
@@ -17,7 +18,7 @@ const PostItem = ({ post }) => {
 			<p>{name}</p>
 			<p>{content}</p>
 
-			<button>edit</button>
+			<button onClick={() => setCurrent(post)}>edit</button>
 			<button onClick={onDelete}>delete</button>
 		</div>
 	);

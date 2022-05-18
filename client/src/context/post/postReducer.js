@@ -1,4 +1,5 @@
 import {
+	SET_CURRENT,
 	ADD_POST,
 	DELETE_POST,
 	CLEAR_CURRENT,
@@ -18,6 +19,16 @@ export default (state, action) => {
 			return {
 				...state,
 				posts: state.posts.filter(post => post.id !== action.payload)
+			};
+		case SET_CURRENT:
+			return {
+				...state,
+				current: action.payload
+			};
+		case CLEAR_CURRENT:
+			return {
+				...state,
+				current: null
 			};
 		default:
 			return state;
