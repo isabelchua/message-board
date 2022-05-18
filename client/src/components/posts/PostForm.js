@@ -6,7 +6,7 @@ import { CLEAR_CURRENT } from "../../context/types";
 const PostForm = () => {
 	const postContext = useContext(PostContext);
 
-	const { clearCurrent, current } = postContext;
+	const { clearCurrent, current, addPost, updatePost } = postContext;
 
 	useEffect(() => {
 		if (current !== null) {
@@ -27,15 +27,20 @@ const PostForm = () => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		postContext.addPost(post);
+		if (current === null) {
+			addPost(post);
+		} else {
+			updatePost(post);
+		}
+		//postContext.addPost(post);
 		setPost({
 			content: ""
 		});
 	};
 
 	const clearAll = () => {
-		clearCurrent()
-	}
+		clearCurrent();
+	};
 
 	return (
 		<form onSubmit={onSubmit}>
@@ -50,9 +55,11 @@ const PostForm = () => {
 				rows="10"
 			></textarea>
 			<input type="submit" value={current ? "Update Post" : "Add Post"} />
-			{current && {
-				<div><button onClick={clearAll}>Clear</button></div>
-			}}
+			{current && (
+				<div>
+					<button onClick={clearAll}>Clear</button>
+				</div>
+			)}
 		</form>
 	);
 };

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {
 	SET_CURRENT,
 	ADD_POST,
@@ -14,6 +15,13 @@ export default (state, action) => {
 			return {
 				...state,
 				posts: [...state.posts, action.payload]
+			};
+		case UPDATE_POST:
+			return {
+				...state,
+				posts: state.posts.map(post =>
+					post.id === action.payload.id ? action.payload : post
+				)
 			};
 		case DELETE_POST:
 			return {

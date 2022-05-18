@@ -78,7 +78,9 @@ const PostState = props => {
 	};
 
 	// Update POST
-
+	const updatePost = post => {
+		dispatch({ type: UPDATE_POST, payload: post });
+	};
 	//Filt;er POSTs
 
 	//clear Filter
@@ -91,6 +93,7 @@ const PostState = props => {
 				current: state.current,
 				addPost,
 				deletePost,
+				updatePost,
 				setCurrent,
 				clearCurrent
 			}}
