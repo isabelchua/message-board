@@ -5,14 +5,24 @@ import PostItem from "./PostItem";
 const Posts = () => {
 	const postContext = useContext(PostContext);
 
-	//console.log(postContext);
-	const { posts } = postContext;
-	//console.log(posts);
+	const { posts, searchText } = postContext;
+
 	return (
 		<>
-			{posts.map(post => (
-				<PostItem key={post.id} post={post} />
+			{posts.filter(post => (
+				<PostItem
+					key={post.id}
+					post={post.content.toLowerCase().includes(searchText)}
+				/>
 			))}
+
+			{/* <PostItem
+				// key={post.id}
+				post={posts.filter(post =>
+					post.content.toLowerCase().includes(searchText)
+				)}
+			/> */}
+			{/* ))} */}
 		</>
 	);
 };

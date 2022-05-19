@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import PostContext from "./postContext";
@@ -55,6 +55,8 @@ const PostState = props => {
 		current: null
 	};
 
+	const [searchText, setSearchText] = useState("");
+
 	const [state, dispatch] = useReducer(postReducer, initialState);
 
 	// Add POST
@@ -95,7 +97,9 @@ const PostState = props => {
 				deletePost,
 				updatePost,
 				setCurrent,
-				clearCurrent
+				clearCurrent,
+				setSearchText,
+				searchText
 			}}
 		>
 			{props.children}
