@@ -5,7 +5,7 @@ const MapPost = ({ mapPost }) => {
 	return (
 		<div>
 			{mapPost.map(post => (
-				<PostItem post={post} />
+				<PostItem key={post.id} post={post} />
 			))}
 		</div>
 	);

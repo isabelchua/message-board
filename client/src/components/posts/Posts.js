@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PostContext from "./../../context/post/postContext";
-import PostItem from "./PostItem";
 import MapPost from "./MapPost";
+import PostItem from "./PostItem";
 
 const Posts = () => {
 	const postContext = useContext(PostContext);
@@ -16,7 +16,14 @@ const Posts = () => {
 					post={post.content.toLowerCase().includes(searchText)}
 				/>
 			))} */}
-			{searchText}
+
+			{/* <PostItem
+				// key={post.id}
+				mapPost={posts
+					.filter(post => post.content.toLowerCase().includes(searchText))
+					.map(post => (post = { post }))}
+			/> */}
+
 			<MapPost
 				// key={post.id}
 				mapPost={posts.filter(post =>

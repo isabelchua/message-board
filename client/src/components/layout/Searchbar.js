@@ -8,6 +8,7 @@ const Searchbar = () => {
 
 	return (
 		<div>
+			Search{" "}
 			<input onChange={e => setSearchText(e.target.value)} type="text" />
 		</div>
 	);
